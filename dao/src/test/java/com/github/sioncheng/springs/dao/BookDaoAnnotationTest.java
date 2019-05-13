@@ -9,9 +9,13 @@ import javax.sql.DataSource;
 
 public class BookDaoAnnotationTest {
 
+    private BeanFactory getDaoBeanFactory() {
+        return new ClassPathXmlApplicationContext(new String[]{"dao.xml"});
+    }
+
     @Test
     public void test() {
-        BeanFactory beanFactory = new ClassPathXmlApplicationContext(new String[]{"dao.xml"});
+        BeanFactory beanFactory = getDaoBeanFactory();
 
         Assert.assertNotNull(beanFactory);
 
@@ -28,5 +32,23 @@ public class BookDaoAnnotationTest {
         int rows = bookDao.addBook(new Book());
 
         Assert.assertEquals(1, rows);
+    }
+
+    @Test
+    public void testJDBCTemplateDao() {
+        BeanFactory beanFactory = getDaoBeanFactory();
+
+        Assert.assertNotNull(beanFactory);
+
+        Object d = beanFactory.getBean("dataSource");
+        Assert.assertNotNull(d);
+        Assert.assertTrue(d instanceof DataSource);
+
+        Object oj = beanFactory.getBean("jdbcTemplateBookDao");
+
+        Assert.assertNotNull(oj);
+        Assert.assertTrue(oj instanceof JdbcTemplateBookDaoImpl);
+
+        Assert.assertEquals(1, ((JdbcTemplateBookDaoImpl)oj).addBook(new Book()));
     }
 }

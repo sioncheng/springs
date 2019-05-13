@@ -16,11 +16,11 @@ public class BookDaoAnnotationImpl implements BookDao {
     @Override
     public int addBook(Book book) {
         int rows = 0;
-
+        Connection connection = null;
         try {
-            Connection connection = dataSource.getConnection();
+            connection = dataSource.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into book(name,isbn,publication,price,author) values (?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement(Constants.INSERT_BOOK_SQL);
 
             preparedStatement.setString(1, book.getName());
             preparedStatement.setString(2, book.getISBN());
@@ -29,8 +29,17 @@ public class BookDaoAnnotationImpl implements BookDao {
             preparedStatement.setString(5, book.getAuthor());
 
             rows = preparedStatement.executeUpdate();
+
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (null != connection) {
+                try {
+                    connection.close();
+                } catch (Exception ex2) {
+                    ex2.printStackTrace();
+                }
+            }
         }
 
         return rows;
