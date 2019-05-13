@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="addr1" class="com.github.sioncheng.springs.container.Address">
+        <property name="cityName" value="shanghai"></property>
+        <property name="pinCode" value="3401234057890"></property>
+    </bean>
+
+    <bean id="customer" class="com.github.sioncheng.springs.container.Customer">
+        <property name="name" value="james"></property>
+        <property name="address" ref="addr1"></property>
+    </bean>
+
+    <bean id="customer2" class="com.github.sioncheng.springs.container.Customer">
+        <property name="name" value="jane">
+        </property>
+        <property name="address">
+            <bean class="com.github.sioncheng.springs.container.Address">
+                <property name="cityName" value="shanghai"></property>
+                <property name="pinCode" value="3401234057890"></property>
+            </bean>
+        </property>
+    </bean>
+</beans>
