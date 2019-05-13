@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>container</module>
+        <module>dao</module>
     </modules>
 
 
@@ -38,6 +39,12 @@
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
             <dependency>
@@ -50,6 +57,19 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.15</version>
             </dependency>
 
         </dependencies>
