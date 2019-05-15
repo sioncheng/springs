@@ -12,6 +12,7 @@
         <module>container</module>
         <module>dao</module>
         <module>taco-cloud</module>
+        <module>web-client</module>
     </modules>
 
 
