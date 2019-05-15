@@ -13,6 +13,7 @@
         <module>dao</module>
         <module>taco-cloud</module>
         <module>web-client</module>
+        <module>rx</module>
     </modules>
 
 
